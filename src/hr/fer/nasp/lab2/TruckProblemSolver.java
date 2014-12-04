@@ -86,15 +86,15 @@ public class TruckProblemSolver {
 		int i = maxLoad - 1, j = numOfElements() - 1;
 		ArrayList<SubItem> optimalItems = new ArrayList<SubItem>();		
 		
-		while (i > 0 && j > 0) {
-			if (j > 1 && array[i - 1][j - 1] != array[i - 1][j - 2]){
+		while (i > 0 && j >= 0) {
+			if (j > 0 && array[i][j].value != array[i][j - 1].value){
 				optimalItems.add(getSubItem(i, j));
-			} else if (j == 1 && array[i][j].value != 0){
+			} else if (j == 0 && array[i][j].value != 0){
 				optimalItems.add(getSubItem(i, j));
 			}
-			int tmp_i = array[i - 1][j - 1].i;
-			j = array[i - 1][j - 1].j;
-			i = tmp_i;
+			int tmp_i = array[i][j].i;
+			j = array[i][j].j;
+			i = tmp_i - 1;
 		}
 
 		return optimalItems;
@@ -105,7 +105,7 @@ public class TruckProblemSolver {
 		for (Item item : allItems){
 			for (SubItem subItem : item.subCategory){
 				k++;
-				if (k == j)
+				if (k == j + 1)
 					return subItem;
 			}
 		}		
@@ -114,7 +114,6 @@ public class TruckProblemSolver {
 	
 	private int numOfElements() {
 		int i = 0;
-		i = allItems.size();
 		for (Item item : allItems) {
 			i += item.subCategory.size();
 		}
