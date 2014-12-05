@@ -12,9 +12,14 @@ public class Main {
 		items.add(new Item("x", (ArrayList<SubItem>)subItems.clone()));
 		
 		subItems.clear();
-		subItems.add(new SubItem("Ay", 10, 6));
+		subItems.add(new SubItem("Ay", 10, 3));
 		subItems.add(new SubItem("By", 5, 1));
 		items.add(new Item("y", (ArrayList<SubItem>)subItems.clone()));
+		
+		subItems.clear();
+		subItems.add(new SubItem("Az", 15, 3));
+		items.add(new Item("z", (ArrayList<SubItem>)subItems.clone()));
+		
 		TruckProblemSolver solver = new TruckProblemSolver(items, 7);
 		ArrayList<SubItem> optimal = solver.findOptimal();
 		for (SubItem subItem : optimal){

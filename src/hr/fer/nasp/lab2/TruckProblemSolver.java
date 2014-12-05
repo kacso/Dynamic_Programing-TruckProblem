@@ -44,7 +44,7 @@ public class TruckProblemSolver {
 
 		value = getValue(array, i - item.volume, j - index - 1, item)
 				+ getValue(item, i);
-		potentialMax[index + 1] = new ArrayItem(value, i, j - index - 1);
+		potentialMax[index + 1] = new ArrayItem(value, i - item.volume, j - index - 1);
 
 		return findMax(potentialMax, index + 2);
 	}
